@@ -467,36 +467,3 @@ other:
       type: textarea
       default: ""
       description: "同时只是加载和pjax执行该脚本"
-
-#以下是新增的自定义评论模块
-comment:
-  label: 评论组件
-  items:
-    comment_mode:
-      name: comment_mode
-      label: 评论模块js
-      type: text
-      default: "https://cdn.jsdelivr.net/gh/LIlGG/halo-comment-sakura/dist/halo-comment.min.js"
-      description: "评论js模块，如果当前为空，则获取评论设置中的模块js"
-    autoLoad:
-      name: autoLoad
-      label: 自动加载评论
-      type: radio
-      data-type: bool
-      default: true
-      options:
-        - value: true
-          label: 开启
-        - value: false
-          label: 关闭
-    showUserAgent:
-      name: showUserAgent
-      label: 评论者 UA 信息
-      type: radio
-      data-type: bool
-      default: true
-      options:
-        - value: true
-          label: 显示
-        - value: false
-          label: 隐藏
