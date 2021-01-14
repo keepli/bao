@@ -25,7 +25,7 @@
                           	<#--在这里新加图标：${menu.icon}和span标签都是自己加上去的-->
                             <#--span标签的作用是动态图标-->
                             <a class="link md:text-base sm:text-sm" href="${menu.url!}"
-                               target="${menu.target!}"><span class="faa-parent animated-hover">${menu.icon}${menu.name}</a></span>
+                               target="${menu.target!}"><span class="faa-parent animated-hover">${menu.icon!}${menu.name}</a></span>
                         </li>
                     </#list>
                 </@menuTag>
