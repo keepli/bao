@@ -5,7 +5,7 @@
 - fontawesome5.x版本
 
 ```html
-<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.2/css/all.css" crossorigin="anonymous"/>
 ```
 
 - 动态图标
