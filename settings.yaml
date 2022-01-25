@@ -3,13 +3,13 @@
 genernal:
   label: 通用设置
   items:
-    access_key:
-      name: access_key
-      label: AccessKey 
-      type: text
-      default: "AccessKey"
-      placeholder: "请务必与后台中的Key一致"
-      description: "Access Key 用于页面中 Content API 的校验，如果在后台管理开启了API设置，不填会导致文章内容不可查看，请不要填写中文或特殊字符（请务必同时配置此处的 Access Key 和后台管理中的 Access Key，并保持一致）"
+    #access_key:
+    #  name: access_key
+    #  label: AccessKey 
+    #  type: text
+    #  default: "AccessKey"
+    #  placeholder: "请务必与后台中的Key一致"
+    #  description: "Access Key 用于页面中 Content API 的校验，如果在后台管理开启了API设置，不填会导致文章内容不可查看，请不要填写中文或特殊字符（请务必同时配置此处的 Access Key 和后台管理中的 Access Key，并保持一致）"
     home_title:
       name: home_title
       label: 首页展示博客名
