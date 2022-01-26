@@ -80,9 +80,10 @@
       <p class="flex flex-row justify-start flex-wrap">
           <#if post.tags?? && post.tags?size gt 0>
               <#list post.tags as tag>
-                <a href="${tag.fullPath!}" class="post-tag mt-2 mb-2 mr-2">
-                  #&nbsp;${tag.name!}
-                </a>
+				<a href="${tag.fullPath!}" class="post-tag mt-2 mb-2 mr-2">
+					<#--在这里新加图标：将原来的#号替换了-->
+					<i class="fas fa-tags"></i>&nbsp;${tag.name!}
+				</a>
               </#list>
           </#if>
       </p>
