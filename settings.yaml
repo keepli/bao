@@ -3,13 +3,6 @@
 genernal:
   label: 通用设置
   items:
-    #access_key:
-    #  name: access_key
-    #  label: AccessKey 
-    #  type: text
-    #  default: "AccessKey"
-    #  placeholder: "请务必与后台中的Key一致"
-    #  description: "Access Key 用于页面中 Content API 的校验，如果在后台管理开启了API设置，不填会导致文章内容不可查看，请不要填写中文或特殊字符（请务必同时配置此处的 Access Key 和后台管理中的 Access Key，并保持一致）"
     home_title:
       name: home_title
       label: 首页展示博客名
@@ -32,6 +25,17 @@ genernal:
           label: 卡片
         - value: false
           label: 列表
+    list_show_date:
+      name: list_show_date
+      label: 列表样式下的文章默认封面是否是日期
+      type: radio
+      data-type: bool
+      default: true
+      options:
+        - value: true
+          label: 是
+        - value: false
+          label: 否
     show_popular:
       name: show_popular
       label: 列表风格下是否展示热门文章
@@ -62,22 +66,6 @@ genernal:
     enabled_index_cover_height:
       name: enabled_index_cover_height
       label: 首页全屏图片
-      type: radio
-      data-type: bool
-      default: true
-      options:
-        - value: true
-          label: 开启
-        - value: false
-          label: 关闭
-    card_random_cover_list:
-      name: card_random_cover_list
-      label: 随机封面图片列表，分号分割
-      type: textarea
-      description: "英文分号(;)分割。注意，这里面填写了图片路径则默认开启了随机图片"
-    open_night_mode:
-      name: open_night_mode
-      label: 开启夜晚模式
       type: radio
       data-type: bool
       default: true
@@ -121,6 +109,22 @@ genernal:
         - value: false
           label: 关闭
       description: "打开后会默认收缩菜单"
+    open_night_mode:
+      name: open_night_mode
+      label: 开启夜晚模式
+      type: radio
+      data-type: bool
+      default: true
+      options:
+        - value: true
+          label: 开启
+        - value: false
+          label: 关闭
+    card_random_cover_list:
+      name: card_random_cover_list
+      label: 随机封面图片列表，分号分割
+      type: textarea
+      description: "英文分号(;)分割。注意，这里面填写了图片路径则默认开启了随机图片"
     Icp:
       name: Icp
       label: "ICP 备案号"
@@ -234,6 +238,17 @@ post:
     enable_code_lineNumber:
       name: enable_code_lineNumber
       label: 代码是否展示行号(需先开启代码高亮)
+      type: radio
+      data-type: bool
+      default: false
+      options:
+        - value: true
+          label: 开启
+        - value: false
+          label: 关闭
+    collpaseCode:
+      name: collpaseCode
+      label: 是否开启代码折叠
       type: radio
       data-type: bool
       default: false

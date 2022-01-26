@@ -1,7 +1,6 @@
-
 <#if is_categories?? || is_tags ??>
     <#--标签云-->
-    <script src="https://cdn.jsdelivr.net/gh/xzzai/static@master/js/jqcloud-1.0.4.min.js"></script>
+    <script src="${theme_base!}/source/js/jqcloud-1.0.4.min.js"></script>
     <script type='text/javascript'>
       $(function () {
         renderTagCloud();
@@ -11,17 +10,13 @@
 </#if>
 
 <#if settings.Aplayer?? && settings.Aplayer != ''>
-    <script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+    <script src="${theme_base!}/source/js/APlayer.min.js"></script>
+    <script src="${theme_base!}/source/js/Meting.min.js"></script>
 </#if>
 
 <#if settings.enabled_mathjax!true>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"
-            integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4"
-            crossorigin="anonymous"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"
-            integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa"
-            crossorigin="anonymous"></script>
+    <script defer src="${theme_base!}/source/js/katex.min.js"></script>
+    <script defer src="${theme_base!}/source/js/auto-render.min.js"></script>
 </#if>
 
 
@@ -38,12 +33,19 @@
 
   const loading = "${theme_base!}/source/images/loading-45.svg";
   var photoList = `${settings.card_random_cover_list!''}`;
-  var photos = []
+  var photos = new Array();
   if (photoList && photoList.trim() !== '') {
     if(photoList.endsWith(';')) {
       photoList = photoList.substring(0, photoList.length - 1);
     }
-     photos = photoList.split(";");
+    var photoArr = photoList.split(";");
+    // 过滤photos中的空字符
+    for(let i = 0; i < photoArr.length; i++) {
+        if (photoArr[i] && photoArr[i].trim().length > 0){
+             photos.push(photoArr[i].trim());
+        }
+
+    }
   }
   // 默认收缩菜单
   var hideMenu = false;
@@ -79,7 +81,7 @@
         }
       }
 
-      show_date_time();
+      setInterval("show_date_time()","1000");
     </script>
 </#if>
 
