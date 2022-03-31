@@ -42,7 +42,7 @@
                  class="bg-gray-200 hover:shadow-md hover:text-white hover:bg-red-400 dark:bg-gray-600 dark:text-gray-300 dark:hover:bg-red-400 dark:hover:shadow-md dark:hover:text-white mt-2 mb-2 mr-2 block py-0 px-4 rounded leading-10 h-10 text-gray-800 no-underline "
                  style="text-decoration: none !important; box-shadow: none !important;">
 				 <#--在这里新加图标：将原来的#号替换了-->
-                 <i class="fas fa-tags"></i>#&nbsp;${tag.name!}
+                 <i class="fas fa-tags"></i>&nbsp;${tag.name!}
               </a>
             </#list>
           </#if>
