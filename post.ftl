@@ -1,104 +1,82 @@
 <#include "module/macro.ftl">
 <@layout title="${post.title!} | ${options.blog_title!}">
   <main class="mx-auto" id="container">
-    <header class="bg-cover post-cover" id="postHeader">
-        <#if post.thumbnail?? && post.thumbnail!=''>
-          <div class="cover-bg">
-            <img src="${post.thumbnail!}" class="z-auto" alt="${post.title!}">
-          </div>
-        <#elseif settings.card_random_cover_list?? && settings.card_random_cover_list != ''>
-          <div class="cover-bg">
-            <img src="${theme_base!}/source/images/loading.svg" class="z-auto img-random" alt="${post.title}"/>
-          </div>
-        <#else>
-          <div class="placeholder-bg">
-          </div>
-        </#if>
-      <div class="cover-content post-cover-content flex justify-center">
+    <header class="bg-gray-900 table fade-down relative w-full opacity-95 z-10 h-1/2" id="postHeader">
+      <#if post.thumbnail?? && post.thumbnail!=''>
+        <div class="cover-bg bottom-0 left-0 right-0 top-0 opacity-30 absolute">
+          <img src="${post.thumbnail!}" class="h-full w-full left-0 object-cover absolute top-0 dark:filter-60 no-zoom"
+               alt="${post.title!}">
+        </div>
+      <#elseif settings.card_random_cover_list?? && settings.card_random_cover_list != ''>
+        <div class="cover-bg bottom-0 left-0 right-0 top-0 opacity-30 absolute">
+          <img src="${theme_base!}/source/images/loading.gif"
+               class="h-full w-full left-0 object-cover absolute top-0 img-random dark:filter-60 no-zoom" alt="${post.title}"/>
+        </div>
+      <#else>
+        <div class="placeholder-bg">
+        </div>
+      </#if>
+      <div class="h-96 align-middle table-cell relative w-full index flex justify-center">
+        <h2 class="text-white mb-5 mt-4 leading-loose relative w-full text-2xl md:text-4xl text-center dark:text-gray-300">
+          ${post.title!}
+        </h2>
         <!-- 封面内容 -->
-        <div class="inner flex flex-col justify-center">
-          <p class="post-title cover-title text-base lg:text-4xl xl:text-5xl md:text-3xl">${post.title!}</p>
-          <div class="post-meta">
-            <div class="post-meta-wrap">
-              <img class="author-avatar"
-                   srcset="${user.avatar!}, ${user.avatar!} 2x"
-                   src="${user.avatar!}" alt=""/>
-              <span class="post-author">${post.visits} 次访问</span>
-              <time class="published"
-                    datetime="${post.createTime?string("yyyy-MM-dd")}">
-                发布: ${post.createTime?string("yyyy-MM-dd")}</time>
-                <#if "${post.createTime}" != "${post.editTime}">
-                  <time class="published"
-                        datetime="${post.editTime?string("yyyy-MM-dd")}">
-                    最后编辑: ${post.editTime?string("yyyy-MM-dd")}</time>
-                </#if>
-            </div>
-            <div class="text-center post-categories">
-                <#if post.categories?? && post.categories?size gt 0>
-                  <span class="iconfont icon-folder"> </span>
-                </#if>
-                <#if post.categories?? && post.categories?size gt 0>
-
-                    <#list post.categories as category>
-                      <a href="${category.fullPath!}" class="post-category">
-                        · ${category.name!}
-                      </a>
-                    </#list>
-                </#if>
-            </div>
+        <div class=" text-white">
+          <div class="text-center">
+            <span class="iconfont icon-people "></span> ${user.nickname!}
+            <span class="iconfont icon-see2 ml-3"></span> ${post.visits}
+            <span class="iconfont icon-time ml-3"></span> ${post.createTime?string("yyyy-MM-dd")}
           </div>
         </div>
       </div>
     </header>
-    <div class="article-content content-container" id="gallery-content">
-
-      <div id="original" style="display: none">${post.originalContent?replace("<", "&lt;")?replace(">", "&gt;")}</div>
-      <div
-        class="container mx-auto px-4 md-content mt-8 max-w-6xl tracking-wider md:leading-relaxed sm:leading-normal cn-pd ct-container loading"
-        id="write">
+    <div class="article-content fade-up">
+      <div class="mx-auto bg-white dark:bg-gray-800 rounded-md px-10 py-10 md-content mt-8 max-w-4xl tracking-wider md:leading-relaxed sm:leading-normal heti text-gray-800 dark:text-gray-300"
+           id="lightGallery">
+        ${post.content!}
+        <hr class="bg-gray-100 dark:bg-gray-700 ">
+        <p class="flex flex-row justify-start flex-wrap">
+          <#if post.tags?? && post.tags?size gt 0>
+            <#list post.tags as tag>
+              <a href="${tag.fullPath!}"
+                 class="bg-gray-200 hover:shadow-md hover:text-white hover:bg-red-400 dark:bg-gray-600 dark:text-gray-300 dark:hover:bg-red-400 dark:hover:shadow-md dark:hover:text-white mt-2 mb-2 mr-2 block py-0 px-4 rounded leading-10 h-10 text-gray-800 no-underline "
+                 style="text-decoration: none !important; box-shadow: none !important;">
+                #&nbsp;${tag.name!}
+              </a>
+            </#list>
+          </#if>
+        </p>
       </div>
       <div id="tocFlag"></div>
-        <#if settings.post_toc!true>
-          <aside id="toc" class="toc"></aside>
-        </#if>
-    </div>
-
-    <div
-      class="container mx-auto px-4 mt-8 max-w-6xl tracking-wider md:leading-relaxed sm:leading-normal  cn-pd ct-container coffee-tags">
-      <blockquote class="post-copyright">
-        <p><b>Copyright: </b> 采用 <a href="https://creativecommons.org/licenses/by/4.0/"
-                                    target="_blank"
-                                    rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可</p>
-        <p><b>Links: </b> <a href="${post.fullPath!}">${post.fullPath!}</a></p>
-      </blockquote>
-        <#include "module/widget/sponsor.ftl">
-    </div>
-
-
-    <div
-      class="container mx-auto px-4 mt-8 pb-4 max-w-6xl tracking-wider md:leading-relaxed sm:leading-normal cn-pd coffee-tags ct-container">
-      <p class="flex flex-row justify-start flex-wrap">
-          <#if post.tags?? && post.tags?size gt 0>
-              <#list post.tags as tag>
-				<a href="${tag.fullPath!}" class="post-tag mt-2 mb-2 mr-2">
-					<#--在这里新加图标：将原来的#号替换了-->
-					<i class="fas fa-tags"></i>&nbsp;${tag.name!}
-				</a>
-              </#list>
-          </#if>
-      </p>
-      <hr class="mt-4" style="background-color: rgba(96, 125, 139, .05); size: 2px;">
-    </div>
-
-    <!-- 上一篇和下一篇 -->
-      <#if settings.post_nepre!true>
-          <#include "module/widget/prev_next_page.ftl">
+      <#if settings.post_toc!true>
+        <aside id="toc" class="toc"></aside>
       </#if>
+    </div>
+
+    <div class="mx-auto md-content mt-8 text-center max-w-4xl tracking-wider md:leading-relaxed sm:leading-normal">
+      <#include "module/widget/sponsor.ftl">
+      <section class="donate inline-block text-center my-4 w-56 like-btn" data-path="${blog_url!}/api/content/posts/${post.id}/likes">
+        <div class="icon relative inline-block bg-red-600 hover:bg-red-500 rounded-full py-3 px-6 z-20 w-28 cursor-pointer">
+          <span class="iconfont icon-like-fill text-white" ></span>
+          <span class="like-count inline-block text-white">${post.likes}</span>
+        </div>
+      </section>
+      <hr class="bg-gray-100 dark:bg-gray-700 ">
+    </div>
+
+				 <#--在这里新加图标：将原来的#号替换了-->
+                  <i class="fas fa-tags"></i>#&nbsp;${tag.name!}
+    <!-- 上一篇和下一篇 -->
+    <#if settings.post_nepre!true>
+      <div class="mx-4 md:mx-auto mt-8 max-w-4xl tracking-wider md:leading-relaxed sm:leading-normal">
+        <#include "module/widget/prev_next_page.ftl">
+      </div>
+    </#if>
 
     <div
-      class="container mx-auto px-4 mt-16 max-w-6xl tracking-wider md:leading-relaxed sm:leading-normal ct-container cn-pd">
-        <#include "module/comment.ftl">
-        <@comment post,"post" />
+            class="mx-4 md:mx-auto md-content mt-8 max-w-4xl tracking-wider md:leading-relaxed sm:leading-normal">
+      <#include "module/comment.ftl">
+      <@comment post,"post" />
     </div>
   </main>
 </@layout>

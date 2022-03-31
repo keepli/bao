@@ -1,6 +1,6 @@
 <#if is_categories?? || is_tags ??>
     <#--标签云-->
-    <script src="${theme_base!}/source/js/jqcloud-1.0.4.min.js"></script>
+<#--    <script src="${theme_base!}/source/js/jqcloud-1.0.4.min.js"></script>-->
     <script type='text/javascript'>
       $(function () {
         renderTagCloud();
@@ -8,17 +8,6 @@
       });
     </script>
 </#if>
-
-<#if settings.Aplayer?? && settings.Aplayer != ''>
-    <script src="${theme_base!}/source/js/APlayer.min.js"></script>
-    <script src="${theme_base!}/source/js/Meting.min.js"></script>
-</#if>
-
-<#if settings.enabled_mathjax!true>
-    <script defer src="${theme_base!}/source/js/katex.min.js"></script>
-    <script defer src="${theme_base!}/source/js/auto-render.min.js"></script>
-</#if>
-
 
 <script type="text/javascript">
   // console.clear();
@@ -47,16 +36,6 @@
 
     }
   }
-  // 默认收缩菜单
-  var hideMenu = false;
-  <#if settings.default_hide_menu!false> 
-      hideMenu = true;
-  </#if>
-
-  var autoNightMode = false
-  <#if settings.auto_night_mode!true>
-    autoNightMode = true;
-  </#if>
 </script>
 
 <#if settings.TimeStatistics??>

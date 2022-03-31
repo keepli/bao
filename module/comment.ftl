@@ -1,9 +1,39 @@
 <#macro comment post,type>
     <#if !post.disallowComment!false>
-        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.min.js"></script>
+        <script src="${theme_base!}/source/js/plugins/vue.min.js"></script>
         <script src="${options.comment_internal_plugin_js!'//cdn.jsdelivr.net/gh/halo-dev/halo-comment@latest/dist/halo-comment.min.js'}"></script>
-        <halo-comment id="${post.id}" type="${type}"/>
+      <section class="comments-area">
+        <div class="inner" id="commentInner">
+          <div id="haloComment"></div>
+        </div>
+      </section>
+
+      <script type="application/javascript" data-pjax-comment>
+        function renderComment() {
+          var  haloComment = document.getElementById('haloComment');
+          if (!haloComment) {
+            $('#' + '${post.id?c}').remove();
+            $('#commentInner').append('<div id="haloComment"></div>');
+          }
+          if (!localStorage.theme) {
+            localStorage.setItem('theme', 'light')
+          }
+          new Vue({
+            el: '#haloComment',
+            data() {
+              return {
+                configs: {
+                  darkMode: localStorage.theme === 'dark'
+                }
+              };
+            },
+            template: `<halo-comment id="${post.id?c}" type="${type}" :configs="JSON.stringify(configs)" />`,
+          });
+        }
+
+        renderComment();
+      </script>
     </#if>
 </#macro>
- <#-- 浣跨敤妯辫姳涓婚鐨勮瘎璁烘ā鍧楋細闇�瑕佸湪鍚庡彴绯荤粺妯″潡鎵惧埌璇勮璁剧疆淇敼璇勮鐨刯s鏂囦欢 -->
+ <#-- 使用樱花主题的评论模块：需要在后台系统模块找到评论设置修改评论的js文件 -->
  <#-- https://cdn.jsdelivr.net/gh/LIlGG/halo-comment-sakura/dist/halo-comment.min.js -->

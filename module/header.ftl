@@ -1,64 +1,51 @@
-<header class="nav-wrapper -sticky  <#if settings.default_hide_menu!true> <#else>nav-bg-fff</#if>" id="navHeader">
-    <button class="collapse-nav" onClick="collapseNav()" id="collapseNav" style="<#if settings.default_hide_menu!true> <#else>display:none</#if>">
-        <div class="collapse-burger -squeeze">
-            <span class="burger-lines"></span>
-        </div>
-    </button>
-    <nav class="nav <#if settings.default_hide_menu!true>opacity-0<#else> opacity-100  </#if> "  id="nav">    
-        <button class="toggle-nav">
-            <div class="burger -squeeze">
-                <span class="burger-lines"></span>
-            </div>
-        </button>
-        <#if settings.header_logoimg?? && settings.header_logoimg!=''>
-            <a href="${blog_url!}" id="headerLogo" class="logo-link"
-               onfocus="this.blur();">
-                <img src="${settings.header_logoimg}" alt="${blog_title!}" class="logo" id="logo"
-                     style="height: 3rem"/>
-            </a>
+<header class="nav-wrapper -sticky bg-transparent transition-opacity duration-300" id="navHeader"
+        style="flex: 0 0 auto;">
+  <nav class="nav bg-white md:bg-transparent" id="nav">
+    <label class="inline-grid select-none place-content-center cursor-pointer h-full swap swap-rotate nav-lines ">
+      <input type="checkbox" class="toggle-nav" id="navCheckbox"/>
+      <svg class="swap-off fill-current nav-line" xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+           viewBox="0 0 512 512">
+        <path d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z"/>
+      </svg>
+      <svg class="swap-on fill-current nav-line" xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+           viewBox="0 0 512 512">
+        <polygon
+                points="400 145.49 366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49"/>
+      </svg>
+    </label>
+   
+    <div class="nav-list " role="navigation">
+      <div class="list -left " id="menuLinks">
+        <#if settings.show_logo!false>
+         <li class="item p-0">
+                <a href="${blog_url!}" id="headerLogo" class="logo-link" onfocus="this.blur();">
+                <img src="${blog_logo!}" alt="${blog_title!}" class="logo" id="logo" style="height: 3rem"/>
+              </a>
+            </li>
         </#if>
-        <ul class="nav-list " role="navigation">
-            <div class="list -left " id="menuLinks">
-                <@menuTag method="tree">
-                    <#list menus?sort_by('priority') as menu>
-                        <li class="item ">
-                          	<#--åœ¨è¿™é‡Œæ–°åŠ å›¾æ ‡ï¼š${menu.icon}å’Œspanæ ‡ç­¾éƒ½æ˜¯è‡ªå·±åŠ ä¸ŠåŽ»çš„-->
-                            <#--spanæ ‡ç­¾çš„ä½œç”¨æ˜¯åŠ¨æ€å›¾æ ‡-->
-                            <a class="link md:text-base sm:text-sm" href="${menu.url!}"
-                               target="${menu.target!}"><span class="faa-parent animated-hover">${menu.icon!}${menu.name}</a></span>
-                        </li>
-                    </#list>
-                </@menuTag>
-            </div>
-            <div class="list -right">
-                <div class="overlay"></div>
-            </div>
-        </ul>
-        <#if !(settings.right_corner_circle!true)>
-            <div class="search">
-                <span class="iconfont icon-search " onclick="toggleSearchBox()"></span>
-            </div>
-        </#if>
-        <#if settings.open_night_mode!true>
-            <div class="day-switch" style="position: relative; right: 40px">
-                <div class="day-night-switch" role="button" onClick="dayNightSwitch()">
-                    <div class="onOff daySwitch" id="daySwitch">
-                        <div class="star star1"></div>
-                        <div class="star star2"></div>
-                        <div class="star star3"></div>
-                        <div class="star star4"></div>
-                        <div class="star star5"></div>
-                        <div class="star sky"></div>
-                        <div class="sunMoon">
-                            <div class="crater crater1"></div>
-                            <div class="crater crater2"></div>
-                            <div class="crater crater3"></div>
-                            <div class="cloud part1"></div>
-                            <div class="cloud part2"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </#if>
-    </nav>
+        <@menuTag method="tree">
+          <#list menus?sort_by('priority') as menu>
+            <li class="item p-0">
+	          <#--ÔÚÕâÀïÐÂ¼ÓÍ¼±ê£º${menu.icon}ºÍspan±êÇ©¶¼ÊÇ×Ô¼º¼ÓÉÏÈ¥µÄ-->
+	          <#--span±êÇ©µÄ×÷ÓÃÊÇ¶¯Ì¬Í¼±ê-->
+              <a class="menu-item link md:text-base sm:text-sm text-gray-100" data-path="${menu.url!}"
+                 href="${menu.url!}" target="${menu.target!}">
+                <span class="faa-parent animated-hover">${menu.icon!}${menu.name}</span>
+              </a>
+            </li>
+          </#list>
+        </@menuTag>
+       
+        <li class="item p-0 flex flex-col md:flex-row" style="margin-left: auto;">
+           <span class="link fill-current" style="padding-top: 0.8rem;">
+            <#include "dark_mode.ftl"/>
+          </span>
+          <span class="iconfont icon-search fill-current link search-btn ml-0 md:ml-4 cursor-pointer" style="padding-top: 1rem; font-size: 1.4rem"></span>
+        </li>
+      </div>
+      <div class="list -right">
+        <div class="overlay"></div>
+      </div>
+    </div>
+  </nav>
 </header>

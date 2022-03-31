@@ -1,6 +1,6 @@
 <#if settings.pjax_enabled!false>
-  <script src="${theme_base!}/source/js/jquery.pjax.js"></script>
-  <script src="${theme_base!}/source/js/nprogress.min.js"></script>
+  <script src="${theme_base!}/source/js/plugins/jquery.pjax.js"></script>
+  <script src="${theme_base!}/source/js/plugins/nprogress.min.js"></script>
   <link rel="stylesheet" href="${theme_base!}/source/css/nprogress.min.css">
   <script type="text/javascript">
     $(document).pjax(
@@ -13,18 +13,11 @@
 
     $(document).on('pjax:complete', function () {
       NProgress.done();
+      
+      xueContext.wrapImage();
 
-      // 检查夜间模式
-      checkNightMode()
-
-      // 自动切换夜间模式
-      if (autoNightMode) {
-        autoDayNight();
-      }
-
-      // 删除listener
-      removeScrollTocFixed();
-
+      xueContext.handleNavActive();
+      
       // 重新加载 评论
       $('script[data-pjax-comment]').each(function () {
         const commentParent = $(this).parent();
@@ -32,40 +25,58 @@
         commentParent.append(comment);
       });
 
-      if ($('#container').find('.ziyan').length > 0) {
-        // 计算时间
-        setTimeAgo();
-
-        // 自言代码高亮
-        hljsZiYanCode()
-      }
-
       // 存在 markdown 页面的功能
       if ($("#container").find('.md-content').length > 0) {
-        // 格式化内容
-        // 格式化markdown文章
-        const format = formatContent();
+
+        // 高亮代码
+        xueContext.highlightCode()
+  
+        // 滚动动画
+        xueContext.reveal()
 
         // 目录相关
         if (typeof tocbot !== "undefined" && document.getElementById("toc")) {
-          dealContentToc();
+          xueContext.handleContentToc();
         }
+      }
 
-        if ($('#container').find('.md-content').length > 0 && format) {
-          return;
-        } else {
-          loadGallery();
-          lazyloadImg();
-        }
+      // alipay
+      if ($("#container").find('.arrow-down').length > 0) {
+        xueContext.arrowDown()
+      }
+
+      // alipay
+      if ($("#container").find('#alipay').length > 0) {
+        xueContext.toggleAlipay()
+      }
+
+      // wechat
+      if ($("#container").find('#wechat').length > 0) {
+        xueContext.toggleWeChat()
+      }
+      
+      // 获取更多
+      if ($("#container").find('.more-btn').length > 0) {
+        xueContext.moreBtn()
+      }
+
+      // 喜欢
+      if ($("#container").find('.like-btn').length > 0) {
+        xueContext.likeBtn()
+      }
+
+      // 分页
+      if ($("#container").find('.pagination-circle').length > 0) {
+        xueContext.pageBtn()
       }
 
       // 相册页面功能
       if ($("#container").find('.photos-page').length > 0) {
-        loadGallery();
+        xueContext.gallery()
       }
 
       // 图片懒加载
-      lazyloadImg()
+      xueContext.lazyloadImage()
 
       //重载
       if (typeof _hmt !== 'undefined') {
@@ -79,17 +90,8 @@
       }
 
       if ($('#container').find('.jqcloud').length > 0) {
-        if (typeof $.fn.jQCloud !== "function") {
-          $.getScript(
-            "${theme_base!}/source/js/jqcloud-1.0.4.min.js",
-            function () {
-              renderTagCloud();
-              renderCategoryCloud();
-            });
-        } else {
-          renderTagCloud();
-          renderCategoryCloud();
-        }
+        renderTagCloud();
+        renderCategoryCloud();
 
       }
 
