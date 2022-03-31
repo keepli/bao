@@ -24,10 +24,7 @@
                         <#if post.categories?? && post.categories?size gt 0>
                             <div class="post-meta">
                                 <#list post.categories as category>
-                                  	<#--在这里新加图标：将原来的#号替换了-->
-                                    <span class="post-categories">
-                                      <i class="fas fa-folder-open"></i>${category.name!} 
-                                    </span>
+                                    <span class="post-categories">#${category.name!} </span>
                                 </#list>
                             </div>
                         <#else>
