@@ -41,3 +41,7 @@
 <#--代码风格-->
 <link rel="stylesheet" href="${theme_base!}/source/highlight.js/styles/atom-one-dark.css">
 
+<#--添加：个人主页-->
+<link rel="stylesheet" type="text/css" href="${theme_base!}/source/custom/css/FiraCode.css">
+<link rel="stylesheet" type="text/css" href="${theme_base!}/source/custom/css/nutssss.css">
+
