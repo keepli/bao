@@ -45,3 +45,11 @@ https://cdn.jsdelivr.net/gh/LIlGG/halo-comment-sakura/dist/halo-comment.min.js
 ### 5.将主页分类的标签#号替换为图标
 
 - 修改了原主题文件`module/widget/post_list.ftl`，添加了标签图标
+
+
+
+### 6.新增自定义页面关于页
+
+- 在后台设置中添加菜单关于 路径为`/s/about`，图标为`<i class="fas fa-address-card faa-bounce"></i>`
+- 在后天设置中新建页面指定`about`
+

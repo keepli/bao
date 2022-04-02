@@ -1,14 +1,15 @@
-/** {*/
-/*    margin: 0;*/
-/*    padding: 0;*/
-/*}*/
+* {
+    margin: 0;
+    padding: 0;
+}
 
-/*body {*/
-/*    background-image: linear-gradient(to left, rgba(255, 0, 149, 0.2), rgba(0, 247, 255, 0.2)), url(https://cdn.jsdelivr.net/gh/keepli/image@1.0/img/1.0/img-15.jpg);*/
-/*    background-repeat: no-repeat;*/
-/*    background-attachment: fixed;*/
-/*    background-size: cover;*/
-/*}*/
+#about-body {
+    /*去掉渐变*/
+    background-image: /*linear-gradient(to left, rgba(255, 0, 149, 0.2), rgba(0, 247, 255, 0.2)),*/ url(https://cdn.jsdelivr.net/gh/keepli/image@1.0/img/1.0/img-15.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
 
 #box {
     /* background-color: red; */
@@ -270,25 +271,25 @@
     color: rgb(0, 132, 255);
 }
 
-/*#footer {*/
-/*    width: 100%;*/
-/*    color: white;*/
-/*    float: left;*/
-/*    text-align: center;*/
-/*    position: fixed;*/
-/*    bottom: 0;*/
-/*    margin-bottom: 30px;*/
-/*    !* background-color: blue; *!*/
-/*}*/
+#about-footer {
+    width: 100%;
+    color: white;
+    float: left;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    margin-bottom: 30px;
+    /* background-color: blue; */
+}
 
-/*#footer a {*/
-/*    text-decoration: none;*/
-/*    color: white;*/
-/*}*/
+#about-footer a {
+    text-decoration: none;
+    color: white;
+}
 
-/*#footer a:hover {*/
-/*    color: rgb(0, 81, 255);*/
-/*}*/
+#about-footer a:hover {
+    color: rgb(0, 81, 255);
+}
 
 /* 自适应 */
 @media screen and (max-width: 1250px)
